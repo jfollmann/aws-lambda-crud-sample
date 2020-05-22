@@ -15,7 +15,8 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "dynamoose": "^2.2.0",
-    "source-map-support": "^0.5.10"
+    "source-map-support": "^0.5.10",
+    "uuid": "^8.1.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
