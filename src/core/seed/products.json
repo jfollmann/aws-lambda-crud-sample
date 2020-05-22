@@ -1,0 +1,29 @@
+[
+  {
+    "id": "a3493bc0-9ac2-11ea-b503-05f089755951",
+    "code": "001",
+    "name": "Product 001 Seed",
+    "description": "Product 001 Seed",
+    "active": true,
+    "createdAt": 1589997132188,
+    "updatedAt": 1589997132188
+  },
+  {
+    "id": "b2b8f460-9ac2-11ea-b503-05f089755951",
+    "code": "002",
+    "name": "Product 002 Seed",
+    "description": "Product 002 Seed",
+    "active": true,
+    "createdAt": 1589997132188,
+    "updatedAt": 1589997132188
+  },
+  {
+    "id": "b1cb3900-9ac2-11ea-b503-05f089755951",
+    "code": "003",
+    "name": "Product 003 Seed",
+    "description": "Product 003 Seed",
+    "active": true,
+    "createdAt": 1589997132188,
+    "updatedAt": 1589997132188
+  }
+]
