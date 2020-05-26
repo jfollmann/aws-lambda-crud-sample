@@ -21,7 +21,7 @@ export const handlerValidator = (params: handlerValidatorParams) => {
       ? JSON.parse(event[validate.argType])
       : event[validate.argType];
 
-    const { value, isValid, errors } = validateEvent(data, validate.rules || {})
+    const { value, isValid, errors } = validateEvent(data, validate.argType, validate.rules || {})
 
     if (isValid) {
       event[validate.argType] = value;
@@ -38,12 +38,12 @@ const validateDefinition = (e, schema) => {
   return value;
 }
 
-const validateEvent = (e, schema) => {
+const validateEvent = (e, path, schema) => {
   const { error, value } = schema.validate(e, { abortEarly: false, errors: { wrap: { label: '' } } });
   const isValid = (!error)
 
   const errors = isValid ? null : error.details.map((detail: any) => {
-    return { key: detail.context.key, message: detail.message };
+    return { key: detail.context.key, path, message: detail.message };
   })
 
   return { value, isValid, errors };
