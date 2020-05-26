@@ -16,14 +16,19 @@ export const handlerValidator = (params: handlerValidatorParams) => {
   const { validate = {}, handler } = validateDefinition(params, schema)
 
   return async (event: APIGatewayProxyEvent, context: Context) => {
-    const data = JSON.parse(event[validate.argType]);
+    console.log('eventData', typeof event[validate.argType]);
+    const data = typeof event[validate.argType] === 'string'
+      ? JSON.parse(event[validate.argType])
+      : event[validate.argType];
+
     const { value, isValid, errors } = validateEvent(data, validate.rules || {})
 
-    if (!isValid) {
-      return StatusHandler.handleError({ statusCode: BAD_REQUEST, errors: { errors } });
+    if (isValid) {
+      event[validate.argType] = value;
+      return handler(event, context)
     }
 
-    return handler(value, context)
+    return StatusHandler.handleError({ statusCode: BAD_REQUEST, errors: { errors } });
   }
 }
 

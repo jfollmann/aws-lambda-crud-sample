@@ -8,7 +8,7 @@ export const handler = handlerValidator({
     console.log('hi handler function! evething is gonna be all right');
 
     try {
-      const { firstName, lastName } = event;
+      const { firstName, lastName } = event.body;
       return StatusHandler.handlerSuccess({
         fullName: `${firstName} ${lastName}`
       });
