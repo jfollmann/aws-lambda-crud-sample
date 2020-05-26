@@ -11,7 +11,6 @@
     "aws:invoke-productShow": "sls invoke -f productShow --path tests/requests-mocks/product/productShow.json --log",
     "aws:invoke-productCreate": "sls invoke -f productCreate --path tests/requests-mocks/product/productCreate.json --log",
     "aws:invoke-productDestroy": "sls invoke -f productDestroy --path tests/requests-mocks/product/productDestroy.json --log",
-
     "aws:invoke-personSuccess": "sls invoke -f productShow --path tests/requests-mocks/person/success.json --log",
     "aws:invoke-personError1": "sls invoke -f productShow --path tests/requests-mocks/person/error1.json --log",
     "aws:invoke-personErro2": "sls invoke -f productShow --path tests/requests-mocks/person/error2.json --log"
@@ -25,6 +24,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
+    "@types/hapi__joi": "^17.1.0",
     "@types/node": "^10.12.18",
     "@types/uuid": "^8.0.0",
     "fork-ts-checker-webpack-plugin": "^3.0.1",

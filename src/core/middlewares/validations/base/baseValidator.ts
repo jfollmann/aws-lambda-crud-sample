@@ -1,22 +1,21 @@
-import joi from "@hapi/joi";
+import * as Joi from "@hapi/joi";
 import { Context, APIGatewayProxyEvent } from "aws-lambda";
 import { BAD_REQUEST } from "http-status-codes";
 import { StatusHandler } from "../../../utils/responseHandler";
 import { handlerValidatorParams } from "./validationTypes";
 
-const schema = joi.object({
-  validate: joi.object({
-    argType: joi.string(),
-    e: joi.object(),
+const schema = Joi.object({
+  validate: Joi.object({
+    argType: Joi.string(),
+    rules: Joi.object(),
   }),
-  handler: joi.func().maxArity(2)
+  handler: Joi.func().maxArity(2)
 })
 
 export const handlerValidator = (params: handlerValidatorParams) => {
   const { validate = {}, handler } = validateDefinition(params, schema)
 
   return async (event: APIGatewayProxyEvent, context: Context) => {
-    console.log('eventData', typeof event[validate.argType]);
     const data = typeof event[validate.argType] === 'string'
       ? JSON.parse(event[validate.argType])
       : event[validate.argType];
