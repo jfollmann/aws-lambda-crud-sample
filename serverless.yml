@@ -63,6 +63,14 @@ resources:
           WriteCapacityUnits: 1
 
 functions:
+  personValidation:
+    handler: src/functions/personFunctions.handler
+    events:
+      - http:
+          method: POST
+          path: person
+          cors: true
+
   productIndex:
     handler: src/functions/productFunctions.index
     events:

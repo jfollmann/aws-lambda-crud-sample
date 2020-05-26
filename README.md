@@ -41,3 +41,18 @@ Invoke Delete (ProductDestroy):
 ```sh
 npm run aws:invoke-productDestroy
 ```
+
+Sample Validation Success (Person):
+```sh
+npm run aws:invoke-personSuccess
+```
+
+Sample Validation Error 1 (Person):
+```sh
+npm run aws:invoke-personError1
+```
+
+Sample Validation Error 2 (Person):
+```sh
+npm run aws:invoke-personError2
+```

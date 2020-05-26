@@ -8,13 +8,18 @@
     "aws:deploy": "sls deploy -v",
     "aws:remove": "sls remove",
     "aws:invoke-productIndex": "sls invoke -f productIndex --log",
-    "aws:invoke-productShow": "sls invoke -f productShow --path tests/requests-mocks/productShow.json --log",
-    "aws:invoke-productCreate": "sls invoke -f productCreate --path tests/requests-mocks/productCreate.json --log",
-    "aws:invoke-productDestroy": "sls invoke -f productDestroy --path tests/requests-mocks/productDestroy.json --log"
+    "aws:invoke-productShow": "sls invoke -f productShow --path tests/requests-mocks/product/productShow.json --log",
+    "aws:invoke-productCreate": "sls invoke -f productCreate --path tests/requests-mocks/product/productCreate.json --log",
+    "aws:invoke-productDestroy": "sls invoke -f productDestroy --path tests/requests-mocks/product/productDestroy.json --log",
+
+    "aws:invoke-personSuccess": "sls invoke -f productShow --path tests/requests-mocks/person/success.json --log",
+    "aws:invoke-personError1": "sls invoke -f productShow --path tests/requests-mocks/person/error1.json --log",
+    "aws:invoke-personErro2": "sls invoke -f productShow --path tests/requests-mocks/person/error2.json --log"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "dynamoose": "^2.2.0",
+    "http-status-codes": "^1.4.0",
     "source-map-support": "^0.5.10",
     "uuid": "^8.1.0"
   },
