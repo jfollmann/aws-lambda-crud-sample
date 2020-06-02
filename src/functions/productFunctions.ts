@@ -61,7 +61,6 @@ export const stream = (event: any, context: any) => {
   if (!event || !event.Records)
     return StatusHandler.handlerSuccess({ statusCode: 200 });
 
-  // console.log("TODO: FOLLMANN");
   console.log("Stream - event", JSON.stringify(event));
   console.log("Stream - context", JSON.stringify(context));
 
