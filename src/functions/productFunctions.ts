@@ -1,6 +1,7 @@
 import { ProductFactory } from "../core/factories/productFactory";
 import { APIGatewayProxyEvent, Context } from "aws-lambda";
 import { StatusHandler } from "../core/utils/responseHandler";
+import * as AWS from "aws-sdk";
 
 const service = ProductFactory.createInstance();
 
@@ -55,3 +56,23 @@ export async function destroy(event: APIGatewayProxyEvent, _context: Context) {
     return this.handleError({ statusCode: 500 })
   }
 }
+
+export const stream = (event: any, context: any) => {
+  if (!event || !event.Records)
+    return StatusHandler.handlerSuccess({ statusCode: 200 });
+
+  // console.log("TODO: FOLLMANN");
+  console.log("Stream - event", JSON.stringify(event));
+  console.log("Stream - context", JSON.stringify(context));
+
+  const eventData = AWS.DynamoDB.Converter.unmarshall(event.Records[0].dynamodb.NewImage);
+  console.log("Stream - eventData", eventData);
+
+  return StatusHandler.handlerSuccess({
+    statusCode: 200,
+    data: { event, context, eventData }
+  });
+}
+
+
+

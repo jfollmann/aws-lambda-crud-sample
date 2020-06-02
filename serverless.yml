@@ -58,6 +58,8 @@ resources:
         KeySchema:
           - AttributeName: id
             KeyType: HASH
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
@@ -108,3 +110,23 @@ functions:
           request:
             paths:
               id: true
+
+  productStream:
+    handler: src/functions/productFunctions.stream
+    events:
+      - stream:
+          type: dynamodb
+          batchSize: 1
+          startingPosition: LATEST
+          arn:
+            Fn::GetAtt:
+              - ProductTable
+              - StreamArn
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:ListStreams
+          - dynamodb:DescribeTable
+          - dynamodb:UpdateItem
+          - dynamodb:GetItem
+        Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.PRODUCT_TABLE}"
